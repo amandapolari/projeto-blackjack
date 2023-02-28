@@ -1,12 +1,51 @@
-/**
- * EXEMPLO DE UTILIZAÇÃO DA 'comprarCarta'
- * 
- * 
-    const carta = comprarCarta(); // Sorteia uma carta. Por exemplo, o rei de ouros
-    
-    console.log(carta.texto) // imprime o texto da carta. Exemplo: "K♦️" (indica "K" de ouros)
-    console.log(carta.valor) // imprime o valor da carta (um número). Exemplo: 10 (dado que "K" vale 10)
- * 
- * 
- * 
- */
+console.log('Boas vindas ao jogo de BlackJack!');
+const confirmacaoUsuario = confirm('Quer iniciar uma nova rodada?');
+
+function confirmarInicio(confirmacao) {
+   if(confirmacao){
+      console.log('O jogo vai iniciar')
+      iniciandoJogo();
+   } else {
+      console.log('O jogo acabou')
+   }
+}
+confirmarInicio(confirmacaoUsuario);
+
+function iniciandoJogo() {
+   // Chamando a função para SORTEAR:
+   const cartaUsuarioI = comprarCarta();
+   const cartaUsuarioII = comprarCarta();
+   const cartaComputadorI = comprarCarta();
+   const cartaComputadorII = comprarCarta();
+
+   // Salvando VALORES das cartas sorteadas:
+   const valorCartaUsuarioI = cartaUsuarioI.valor;
+   const valorCartaUsuarioII = cartaUsuarioII.valor;
+   const valorCartaComputadorI = cartaComputadorI.valor;
+   const valorCartaComputadorII = cartaComputadorII.valor;
+
+   // Salvando TEXTO das cartas sorteadas
+   const textoCartaUsuarioI = cartaUsuarioI.texto;
+   const textoCartaUsuarioII = cartaUsuarioII.texto;
+   const textoCartaComputadorI = cartaComputadorI.texto;
+   const textoCartaComputadorII = cartaComputadorII.texto;
+
+   // Calculando a PONTUAÇÃO dos jogadores:
+   const pontuacaoUsuario = valorCartaUsuarioI + valorCartaUsuarioII
+   const pontuacaoComputador = valorCartaComputadorI + valorCartaComputadorII
+
+   // MOSTRANDO as cartas no console:
+   console.log(`
+   Usuário - cartas: ${textoCartaUsuarioI} ${textoCartaUsuarioII} - pontuação ${pontuacaoUsuario}
+   Computador - cartas: ${textoCartaComputadorI} ${textoCartaComputadorII} - pontuação ${pontuacaoComputador}
+   `)
+
+   // Condicional da informação do VENCEDOR:
+   if (pontuacaoUsuario===pontuacaoComputador) {
+      console.log('Empate!')
+   } else if (pontuacaoUsuario>pontuacaoComputador) {
+      console.log('O usuário ganhou!')
+   } else {
+      console.log('O computador ganhou')
+   }
+}
